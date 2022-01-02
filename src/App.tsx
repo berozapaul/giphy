@@ -1,25 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Search from "./components/search/Search";
 import './App.css';
 
 function App() {
+  const [searchText, setSearchState] = useState('');
+  const [gif, setGif] = useState({});
+  const [loader, setLoader] = useState(true);
+  const [isError, setIsError] = useState(false);
+
+  const executeSearch = async (searchText: string) => {
+     console.log(searchText);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="container">
+        <h1 className="inscApp">The GIF Search </h1>
+        <Search
+            onSearch={executeSearch}
+        />
+        { isError && <div>Something went wrong ...</div> }
+      </div>
   );
 }
 
