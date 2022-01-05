@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import {Container} from '@material-ui/core';
+
 import AppContext from './AppContext';
 import Search from "./components/search/Search";
 import Preloader from "./components/common/Preloader";
@@ -6,6 +8,7 @@ import './App.css';
 import { doSearch, d } from "./utils/SiteUtils";
 import { trendingGifs } from "./utils/APIUtils";
 import List from "./components/list/List";
+import Header from "./components/Header/Header";
 
 /*
  * Purpose: This is the main component to bootstrap the app.
@@ -26,22 +29,21 @@ const App: React.FC = () => {
         setData(trendingData);
     }, []);
 
-    if (data.length < 1) {
-        return <Preloader />
-    }
-
     const contextData = { gifs: data || [] };
     return (
-        <AppContext.Provider value={ contextData }>
-            <div className="container">
-                <h1 className="inscApp">The GIF Search a</h1>
+        <Container maxWidth="md">
+            {data.length < 1 ? <Preloader/> :
+            <AppContext.Provider value={ contextData }>
+                <Header />
+                <h1 className="inscApp">The GIF Search</h1>
                 <Search
                     onSearch={executeSearch}
                 />
                 <List/>
-            </div>
-        </AppContext.Provider>
+            </AppContext.Provider>
+            }
+        </Container>
     );
-}
+};
 
 export default App;
