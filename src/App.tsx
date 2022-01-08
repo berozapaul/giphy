@@ -8,7 +8,7 @@ import './App.css';
 import { doSearch, d } from "./utils/SiteUtils";
 import { trendingGifs } from "./utils/APIUtils";
 import List from "./components/list/List";
-import Header from "./components/Header/Header";
+import Header from "./components/header/Header";
 
 /*
  * Purpose: This is the main component to bootstrap the app.
